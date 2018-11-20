@@ -22,6 +22,14 @@ systemLog:
 net:
   port: 27017
   bindIp: 0.0.0.0
+  ssl:
+     mode: requireSSL
+     # optained with the command 'sudo cat privkey.pem fullchain.pem > mongodb.pem'
+     # a client can the connect with 'mongo --ssl --sslAllowInvalidCertificates scopes-development.api.gouv.fr:27017/scopes -u signup -p signup'
+     PEMKeyFile: /etc/letsencrypt/live/scopes-development.api.gouv.fr/mongodb.pem
+     CAFile: /etc/letsencrypt/live/scopes-development.api.gouv.fr/fullchain.pem
+     disabledProtocols: TLS1_0,TLS1_1
+     allowConnectionsWithoutCertificates: true
 
 
 # how the process runs
